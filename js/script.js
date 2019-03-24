@@ -28,13 +28,20 @@ IDboxToRun.addEventListener('mousemove', function(e){
     robotX = displayX-cursorX-robotSizeX/2;
     robotY = displayY-cursorY-robotSizeY/2;
 
-    if(robotX > 0 && robotX < displayX-robotSizeX){
-        robot.style.marginLeft = robotX + "px";
-        IDrobotX.textContent = 'X robot: ' + robotX + 'px';
-    }
-    if(robotY > 0 && robotY < displayY-robotSizeY){
-        robot.style.marginTop = robotY + "px"; 
-        IDrobotY.textContent = 'Y robot: ' + robotY + 'px';
+    var startRandomX = displayX/2 - displayX*0.3/2;
+    var endRandomX = displayX/2 + displayX*0.3/2;
+    var startRandomY = displayY/2 - displayY*0.3/2;
+    var endRandomY = displayY/2 + displayY*0.3/2;
+    if((cursorX > startRandomX) == false || (cursorX < endRandomX) == false || (cursorY > startRandomY) == false || (cursorY < endRandomY) == false){
+        if(robotX > 0 && robotX < displayX-robotSizeX){//bug in border of the screen
+            robot.style.marginLeft = robotX + "px";
+            IDrobotX.textContent = 'X robot: ' + robotX + 'px';
+        }
+        if(robotY > 0 && robotY < displayY-robotSizeY){
+            robot.style.marginTop = robotY + "px"; 
+            IDrobotY.textContent = 'Y robot: ' + robotY + 'px';
+        }
+    }else{
+        alert('Will be random Area, ESC to escape.');
     }
 })
-
