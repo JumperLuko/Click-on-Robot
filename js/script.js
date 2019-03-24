@@ -1,34 +1,21 @@
-var boxToRun = document.getElementById("boxToRun");
-var cursorX = document.getElementById("cursorX");
-var cursorY = document.getElementById("cursorY");
-var displayX = document.getElementById("displayX");
-var displayY = document.getElementById("displayY");
-document.body.addEventListener('mousemove', function(e){
-	cursorX.textContent = 'X Cursor: ' + e.clientX + 'px';
-    cursorY.textContent = 'Y Cursor: ' + (e.clientY-50) + 'px';
+var IDboxToRun = document.getElementById("boxToRun");
+var IDcursorX = document.getElementById("cursorX");
+var IDcursorY = document.getElementById("cursorY");
+var IDdisplayX = document.getElementById("displayX");
+var IDdisplayY = document.getElementById("displayY");
+var IDrobot = document.getElementById("robot");
+IDboxToRun.addEventListener('mousemove', function(e){
+    cursorX = e.clientX;
+    cursorY = e.clientY-50;
+	IDcursorX.textContent = 'X cursor: ' + cursorX + 'px';
+    IDcursorY.textContent = 'Y cursor: ' + cursorY + 'px';
+    robot.style.marginTop = cursorY + "px"; 
+    robot.style.marginLeft = cursorX + "px";
 })
 
 function sizeDisplay(){
-    displayX.textContent = 'X size: ' + boxToRun.clientWidth + 'px';
-    displayY.textContent = 'Y size: ' + boxToRun.clientHeight + 'px';
+    IDdisplayX.textContent = 'X size: ' + IDboxToRun.clientWidth + 'px';
+    IDdisplayY.textContent = 'Y size: ' + IDboxToRun.clientHeight + 'px';
 }
-sizeDisplay()
-setInterval(sizeDisplay, 1000);
-
-var runRobot = function() {
-    var robot = document.getElementById("robot");
-    robot.style.marginTop = 300 + "px"; 
-    robot.style.marginLeft = 300 + "px"; 
-    // var pos = 0;
-    // var id = setInterval(frame, 5);
-    // function frame() {
-    //     if (pos == 350) {
-    //     clearInterval(id);
-    //     } else {
-    //     pos++; 
-    //     robot.style.marginTop = pos + "px"; 
-    //     robot.style.marginLeft = pos + "px"; 
-    //     }
-    // }
-}
-boxToRun.addEventListener('mouseover', runRobot);
+sizeDisplay();
+window.onresize = IDboxToRun.sizeDisplay;
