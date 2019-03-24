@@ -14,7 +14,7 @@ body{
             border: 1px dashed #0A84FF; //developer
             background: #ffffff;
             *{
-                transition: cubic-bezier(.86,0,.07,1) 0.3s;
+                transition: linear 0.3s;
             }
         }
         > span#positionsDisplay{
