@@ -51,20 +51,47 @@ IDboxToRun.addEventListener('mousemove', function(e){
 
 var cursorXRandom;var cursorYRandom;
 setInterval(function(){
-    cursorXRandom = Math.floor(Math.random() * (endRandomX*2 - startRandomX/2) + startRandomX/2);
-    cursorYRandom = Math.floor(Math.random() * (endRandomY*2 - startRandomY/2) + startRandomY/2);
+        cursorXRandom = Math.floor(Math.random() * (endRandomX*2 - startRandomX/2) + startRandomX/2);
+        cursorYRandom = Math.floor(Math.random() * (endRandomY*2 - startRandomY/2) + startRandomY/2);
 }, 100);
 
-IDboxToRun.addEventListener('mousemove', function(e){
+IDboxToRun.addEventListener('mousemove', function(){
     if(centerVerify == false){            
         robotX = displayX-cursorXRandom-robotSizeX/2;
         robotY = displayY-cursorYRandom-robotSizeY/2;
         robotRun();
-        // document.IDrobot.src = "img/Robot-warn.svg";
-
     }
 });
 
-// IDrobot.addEventListener('mousemove', function(e){
-//     document.IDrobot.src = "img/Robot-warn.svg";
-// });
+var catchTrue = false;
+IDrobot.addEventListener('mousemove', function(){
+    setTimeout(function(){
+        if(catchTrue == false){
+            IDrobot.src = "img/Robot-warn.svg";
+        }else{
+            setTimeout(function(){
+                catchTrue = false;
+                IDrobot.src = "img/Robot.svg";
+            },2000);
+        }
+    },000);
+});
+IDrobot.addEventListener('mouseout', function(){
+    setTimeout(function(){
+        if(catchTrue == false){
+            IDrobot.src = "img/Robot.svg";
+        }else{
+            setTimeout(function(){
+                catchTrue = false;
+                IDrobot.src = "img/Robot.svg";
+            },2000);
+        }
+    },400);
+});
+IDrobot.addEventListener('mousedown', function(){
+    IDrobot.src = "img/Robot-catch.svg";
+    catchTrue = true;
+    setTimeout(function(){
+        alert("You Win!");
+    },000);
+});
