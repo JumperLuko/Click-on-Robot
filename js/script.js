@@ -47,13 +47,12 @@ IDboxToRun.addEventListener('mousemove', function(e){
     if(centerVerify){
         robotRun();
     }
-    return;
 });
+
 var cursorXRandom;var cursorYRandom;
 setInterval(function(){
-    cursorXRandom = Math.floor(Math.random() * (endRandomX+endRandomX - startRandomX-startRandomX) + startRandomX-startRandomX);
-    cursorYRandom = Math.floor(Math.random() * (endRandomY+endRandomY - startRandomY-startRandomY) + startRandomY-startRandomY);
-    console.log("Random Update");
+    cursorXRandom = Math.floor(Math.random() * (endRandomX*2 - startRandomX/2) + startRandomX/2);
+    cursorYRandom = Math.floor(Math.random() * (endRandomY*2 - startRandomY/2) + startRandomY/2);
 }, 100);
 
 IDboxToRun.addEventListener('mousemove', function(e){
@@ -61,5 +60,11 @@ IDboxToRun.addEventListener('mousemove', function(e){
         robotX = displayX-cursorXRandom-robotSizeX/2;
         robotY = displayY-cursorYRandom-robotSizeY/2;
         robotRun();
+        // document.IDrobot.src = "img/Robot-warn.svg";
+
     }
 });
+
+// IDrobot.addEventListener('mousemove', function(e){
+//     document.IDrobot.src = "img/Robot-warn.svg";
+// });
